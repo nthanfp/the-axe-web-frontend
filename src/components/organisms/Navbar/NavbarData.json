@@ -1,0 +1,43 @@
+{
+  "brand": {
+    "label": "My App",
+    "link": "/"
+  },
+  "leftItems": [
+    {
+      "label": "Home",
+      "link": "/",
+      "icon": "faHome"
+    },
+    {
+      "label": "Dropdown Left",
+      "icon": "faHome",
+      "dropdownItems": [
+        {
+          "label": "Action",
+          "link": "/"
+        },
+        {
+          "label": "Another action",
+          "link": "/"
+        },
+        {
+          "label": "Something else here",
+          "link": "/"
+        }
+      ]
+    }
+  ],
+  "rightItems": [
+    {
+      "label": "Login",
+      "link": "/login",
+      "icon": "faSignInAlt"
+    },
+    {
+      "label": "Register",
+      "link": "/register",
+      "icon": "faUserPlus"
+    }
+  ]
+}
