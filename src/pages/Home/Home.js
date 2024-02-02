@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Layout } from '../../components';
+// import '../../assets/js/siel.js'
 
 const Home = () => {
+  useEffect(() => {
+    document.body.classList.add('body-img');
+    return () => {
+      document.body.classList.remove('body-img');
+    };
+  }, []);
+
   return (
     <Layout>
-      <h1>Welcome to the Home Page!</h1>
-      {/* Add your home page content here */}
+      <div className="siel">
+        <h1 className="lol" data-target-resolver="HAHA">Hello</h1>
+      </div>
     </Layout>
   );
 };
