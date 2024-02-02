@@ -8,8 +8,8 @@ const Layout = ({ children }) => {
 	return (
 		<div>
 			{/* Navbar */}
-			<Navbar/>
-			
+			<Navbar />
+
 			{/* Page content */}
 			<div className="container mt-4">{children}</div>
 		</div>
