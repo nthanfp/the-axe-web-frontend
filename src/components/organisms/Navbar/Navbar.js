@@ -1,41 +1,73 @@
 import React from 'react';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
-const Navbar = () => {
-    // Navbar data in JSON format
-    const navbarData = {
-        brand: { label: process.env.REACT_APP_NAME, link: '/' },
-        leftItems: [
-            { label: 'Home', link: '/' },
-        ],
-        rightItems: [
-            { label: 'Login', link: '/login' },
-            { label: 'Register', link: '/register' },
-        ],
-    };
-
-    return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div className="container-fluid">
-                <a className="navbar-brand" href={navbarData.brand.link}>{navbarData.brand.label}</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
-                    <div className="navbar-nav">
-                        {navbarData.leftItems.map((item, index) => (
-                            <a key={index} className="nav-link" href={item.link}>{item.label}</a>
-                        ))}
-                    </div>
-                    {/* Navbar Right */}
-                    <div className="navbar-nav">
-                        {navbarData.rightItems.map((item, index) => (
-                            <a key={index} className="nav-link" href={item.link}>{item.label}</a>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </nav>
-    );
+// Define your dynamic data
+const navbarData = {
+  brand: { label: process.env.REACT_APP_NAME, link: '/' },
+  leftItems: [
+    { label: 'Home', link: '/' },
+    {
+      label: 'Dropdown Left',
+      dropdownItems: [
+        { label: 'Action', link: '/' },
+        { label: 'Another action', link: '/' },
+        { label: 'Something else here', link: '/' },
+      ],
+    },
+  ],
+  rightItems: [
+    { label: 'Login', link: '/login' },
+    { label: 'Register', link: '/register' },
+  ],
 };
 
-export default Navbar;
+const MyNavbar = () => {
+  return (
+    <Navbar bg="primary" expand="lg" variant="dark">
+      <div className="container-fluid">
+        <Navbar.Brand href={navbarData.brand.link}>{navbarData.brand.label}</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbar-nav" />
+        <Navbar.Collapse id="navbar-nav" className="justify-content-between">
+          {/* left */}
+          <Nav className="mr-auto">
+            {navbarData.leftItems.map((item, index) => (
+              <React.Fragment key={index}>
+                {item.dropdownItems ? (
+                  <NavDropdown title={item.label} id={`dropdown-left-${index}`}>
+                    {item.dropdownItems.map((dropdownItem, subIndex) => (
+                      <NavDropdown.Item key={subIndex} href={dropdownItem.link}>
+                        {dropdownItem.label}
+                      </NavDropdown.Item>
+                    ))}
+                  </NavDropdown>
+                ) : (
+                  <Nav.Link href={item.link}>{item.label}</Nav.Link>
+                )}
+              </React.Fragment>
+            ))}
+          </Nav>
+          {/* right */}
+          <Nav>
+            {navbarData.rightItems.map((item, index) => (
+              <React.Fragment key={index}>
+                {item.dropdownItems ? (
+                  <NavDropdown title={item.label} id={`dropdown-right-${index}`}>
+                    {item.dropdownItems.map((dropdownItem, subIndex) => (
+                      <NavDropdown.Item key={subIndex} href={dropdownItem.link}>
+                        {dropdownItem.label}
+                      </NavDropdown.Item>
+                    ))}
+                  </NavDropdown>
+                ) : (
+                  <Nav.Link href={item.link}>{item.label}</Nav.Link>
+                )}
+              </React.Fragment>
+            ))}
+          </Nav>
+        </Navbar.Collapse>
+      </div>
+    </Navbar>
+  );
+};
+
+export default MyNavbar;

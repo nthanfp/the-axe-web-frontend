@@ -2,13 +2,13 @@ import React from 'react';
 
 import '../../../assets/css/styles.css'
 
-import { Navbar } from '../../organisms';
+import { MyNavbar } from '../../organisms';
 
 const Layout = ({ children }) => {
 	return (
 		<div>
 			{/* Navbar */}
-			<Navbar />
+			<MyNavbar />
 
 			{/* Page content */}
 			<div className="container mt-4">{children}</div>

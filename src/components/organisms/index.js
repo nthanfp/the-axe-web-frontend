@@ -1,3 +1,3 @@
-import Navbar from "./Navbar/Navbar.js";
+import MyNavbar from "./Navbar/Navbar.js";
 
-export { Navbar }
+export { MyNavbar }
