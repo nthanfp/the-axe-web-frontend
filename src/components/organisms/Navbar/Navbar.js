@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSignInAlt, faUserPlus, faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -21,8 +22,8 @@ const navbarData = {
     // },
   ],
   rightItems: [
-    { label: 'Login', link: '/login', icon: faSignInAlt },
-    { label: 'Register', link: '/register', icon: faUserPlus },
+    { label: 'Login', link: '/account/login', icon: faSignInAlt },
+    { label: 'Register', link: '/account/register', icon: faUserPlus },
   ],
 };
 
@@ -30,7 +31,7 @@ const MyNavbar = () => {
   return (
     <Navbar bg="primary" expand="lg" variant="dark">
       <div className="container-fluid">
-        <Navbar.Brand href={navbarData.brand.link}>
+        <Navbar.Brand as={Link} to={navbarData.brand.link}>
           {navbarData.brand.label}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
@@ -47,7 +48,7 @@ const MyNavbar = () => {
                     </>
                   )} id={`dropdown-left-${index}`}>
                     {item.dropdownItems.map((dropdownItem, subIndex) => (
-                      <NavDropdown.Item key={subIndex} href={dropdownItem.link}>
+                      <NavDropdown.Item key={subIndex} as={Link} to={dropdownItem.link}>
                         {dropdownItem.icon && (
                           <FontAwesomeIcon icon={dropdownItem.icon} className="me-2" />
                         )}
@@ -56,7 +57,7 @@ const MyNavbar = () => {
                     ))}
                   </NavDropdown>
                 ) : (
-                  <Nav.Link href={item.link}>
+                  <Nav.Link as={Link} to={item.link}>
                     {item.icon && <FontAwesomeIcon icon={item.icon} className="me-2" />}
                     {item.label}
                   </Nav.Link>
@@ -76,7 +77,7 @@ const MyNavbar = () => {
                     </>
                   )} id={`dropdown-right-${index}`}>
                     {item.dropdownItems.map((dropdownItem, subIndex) => (
-                      <NavDropdown.Item key={subIndex} href={dropdownItem.link}>
+                      <NavDropdown.Item key={subIndex} as={Link} to={dropdownItem.link}>
                         {dropdownItem.icon && (
                           <FontAwesomeIcon icon={dropdownItem.icon} className="me-2" />
                         )}
@@ -85,7 +86,7 @@ const MyNavbar = () => {
                     ))}
                   </NavDropdown>
                 ) : (
-                  <Nav.Link href={item.link}>
+                  <Nav.Link as={Link} to={item.link}>
                     {item.icon && <FontAwesomeIcon icon={item.icon} className="me-2" />}
                     {item.label}
                   </Nav.Link>

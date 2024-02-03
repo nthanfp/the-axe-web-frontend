@@ -1,11 +1,13 @@
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Home } from '../../pages';
+import { Home, LoginPage, ProfilePage, RegisterPage } from '../../pages';
+import ProtectedRoute from './ProtectedRoute';
 
 const routes = [
   { path: '/', element: <Home />, exact: true },
-  // Add more routes as needed
-  // { path: '/account/login', element: <Login /> },
-  // { path: '/account/register', element: <Register /> },
+  { path: '/account/login', element: <LoginPage /> },
+  { path: '/account/register', element: <RegisterPage /> },
+  { path: '/account/profile', element: <ProtectedRoute element={<ProfilePage />} /> },
 ];
 
 const AppRoutes = () => (
