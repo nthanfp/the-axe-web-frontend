@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faSignInAlt, faUserPlus, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 // import navbarData from './navbarData.json';
 

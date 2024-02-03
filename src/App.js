@@ -3,7 +3,7 @@ import { AppRoutes } from "./config";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App Fade">
       <AppRoutes />
     </div>
   );

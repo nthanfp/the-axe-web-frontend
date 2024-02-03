@@ -6,13 +6,24 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "bootswatch/dist/pulse/bootstrap.min.css";
 
+/* Pace loading */
+@keyframes FadeAnim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 body {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAxMC8yOS8xMiKqq3kAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzVxteM2AAABHklEQVRIib2Vyw6EIAxFW5idr///Qx9sfG3pLEyJ3tAwi5EmBqRo7vHawiEEERHS6x7MTMxMVv6+z3tPMUYSkfTM/R0fEaG2bbMv+Gc4nZzn+dN4HAcREa3r+hi3bcuu68jLskhVIlW073tWaYlQ9+F9IpqmSfq+fwskhdO/AwmUTJXrOuaRQNeRkOd5lq7rXmS5InmERKoER/QMvUAPlZDHcZRhGN4CSeGY+aHMqgcks5RrHv/eeh455x5KrMq2yHQdibDO6ncG/KZWL7M8xDyS1/MIO0NJqdULLS81X6/X6aR0nqBSJcPeZnlZrzN477NKURn2Nus8sjzmEII0TfMiyxUuxphVWjpJkbx0btUnshRihVv70Bv8ItXq6Asoi/ZiCbU6YgAAAABJRU5ErkJggg==);
   font-family: "Inter";
 }
 
 .body-img {
-  background: url("https://images.pexels.com/photos/340779/pexels-photo-340779.jpeg") no-repeat center center fixed;
+  background: url("https://images.pexels.com/photos/340779/pexels-photo-340779.jpeg")
+    no-repeat center center fixed;
   height: 100%;
   min-height: -webkit-fill-available;
   background-position: center center;
@@ -27,19 +38,19 @@ body {
 }
 
 .siel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 5rem;
-    position: center;
-    top:50%;
-    padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 5rem;
+  position: center;
+  top: 50%;
+  padding-top: 100px;
 }
 
 .lol {
-    color: #eee;
-    font-size: 5rem;
-    font-weight: 300;
-    text-transform: uppercase;
+  color: #eee;
+  font-size: 5rem;
+  font-weight: 300;
+  text-transform: uppercase;
 }
