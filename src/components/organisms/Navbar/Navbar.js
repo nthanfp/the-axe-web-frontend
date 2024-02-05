@@ -2,45 +2,58 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSignInAlt, faUserPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-// import navbarData from './navbarData.json';
+import { isLoggedIn } from '../../../utils/Common';
 
-// Define your dynamic data
 const navbarData = {
   brand: { label: process.env.REACT_APP_NAME, link: '/' },
   leftItems: [
     { label: 'Home', link: '/', icon: faHome },
-    // {
-    //   label: 'Dropdown Left',
-    //   icon: faHome,
-    //   dropdownItems: [
-    //     { label: 'Action', link: '/' },
-    //     { label: 'Another action', link: '/' },
-    //     { label: 'Something else here', link: '/' },
-    //   ],
-    // },
+    // Add additional left items or dropdowns as needed
   ],
   rightItems: [
-    { label: 'Login', link: '/account/login', icon: faSignInAlt },
-    { label: 'Register', link: '/account/register', icon: faUserPlus },
+    { label: 'Login', link: '/account/login', icon: faSignInAlt, isLogged: false },
+    { label: 'Register', link: '/account/register', icon: faUserPlus, isLogged: false },
+    { label: 'Logout', link: '/account/logout', icon: faSignOutAlt, isLogged: true },
+    // Add additional right items or dropdowns as needed
   ],
 };
 
 const MyNavbar = () => {
+  // Filter the right items based on the user's login status
+  const filteredRightItems = navbarData.rightItems
+  .filter((item) => {
+    if (item.isLogged) {
+      // If the item requires login, check if the user is logged in
+      return isLoggedIn();
+    } else if (item.label === 'Login' || item.label === 'Register') {
+      // Exclude both "Login" and "Register" if the user is not logged in
+      return !isLoggedIn();
+    }
+    // Include other items without checking authentication
+    return true;
+  });
+
   return (
     <Navbar bg="primary" expand="lg" variant="dark">
       <div className="container-fluid">
+        {/* Brand */}
         <Navbar.Brand as={Link} to={navbarData.brand.link}>
           {navbarData.brand.label}
         </Navbar.Brand>
+
+        {/* Navbar toggle button for smaller screens */}
         <Navbar.Toggle aria-controls="navbar-nav" />
+
+        {/* Navbar content */}
         <Navbar.Collapse id="navbar-nav" className="justify-content-between">
-          {/* left */}
+          {/* Left items */}
           <Nav className="mr-auto">
             {navbarData.leftItems.map((item, index) => (
               <React.Fragment key={index}>
                 {item.dropdownItems ? (
+                  // If the item has dropdown items, render a dropdown
                   <NavDropdown title={(
                     <>
                       {item.icon && <FontAwesomeIcon icon={item.icon} className="me-2" />}
@@ -57,6 +70,7 @@ const MyNavbar = () => {
                     ))}
                   </NavDropdown>
                 ) : (
+                  // If the item does not have dropdown items, render a regular link
                   <Nav.Link as={Link} to={item.link}>
                     {item.icon && <FontAwesomeIcon icon={item.icon} className="me-2" />}
                     {item.label}
@@ -65,11 +79,13 @@ const MyNavbar = () => {
               </React.Fragment>
             ))}
           </Nav>
-          {/* right */}
+
+          {/* Right items */}
           <Nav>
-            {navbarData.rightItems.map((item, index) => (
+            {filteredRightItems.map((item, index) => (
               <React.Fragment key={index}>
                 {item.dropdownItems ? (
+                  // If the item has dropdown items, render a dropdown
                   <NavDropdown title={(
                     <>
                       {item.icon && <FontAwesomeIcon icon={item.icon} className="me-2" />}
@@ -86,6 +102,7 @@ const MyNavbar = () => {
                     ))}
                   </NavDropdown>
                 ) : (
+                  // If the item does not have dropdown items, render a regular link
                   <Nav.Link as={Link} to={item.link}>
                     {item.icon && <FontAwesomeIcon icon={item.icon} className="me-2" />}
                     {item.label}

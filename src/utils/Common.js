@@ -4,10 +4,12 @@ const getUser = () => {
   const token = getToken();
   console.log('Token:', token);
 
-  const decodedToken = jwtDecode(token);
-  console.log('Decoded Token:', decodedToken);
-  
-  if (token != null) return jwtDecode(token);
+  if (token != null) {
+    const decodedToken = jwtDecode(token);
+    console.log('Decoded Token:', decodedToken);
+    return decodedToken;
+  }
+
   return null;
 };
 
