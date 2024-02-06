@@ -2,11 +2,11 @@ import { jwtDecode } from 'jwt-decode';
 
 const getUser = () => {
   const token = getToken();
-  console.log('Token:', token);
+  // console.log('Token:', token);
 
   if (token != null) {
     const decodedToken = jwtDecode(token);
-    console.log('Decoded Token:', decodedToken);
+    // console.log('Decoded Token:', decodedToken);
     return decodedToken;
   }
 
@@ -40,7 +40,7 @@ const isLoggedInAsAdmin = () => {
     return false;
   }
 
-  if (data.role === 'admin') return true;
+  if (data.role === 'ADMIN') return true;
 
   return false;
 };

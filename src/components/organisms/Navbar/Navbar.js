@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faSignInAlt, faUserPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSignInAlt, faUserPlus, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { isLoggedIn } from '../../../utils/Common';
 
@@ -10,30 +10,39 @@ const navbarData = {
   brand: { label: process.env.REACT_APP_NAME, link: '/' },
   leftItems: [
     { label: 'Home', link: '/', icon: faHome },
-    // Add additional left items or dropdowns as needed
   ],
   rightItems: [
-    { label: 'Login', link: '/account/login', icon: faSignInAlt, isLogged: false },
-    { label: 'Register', link: '/account/register', icon: faUserPlus, isLogged: false },
+    {
+      label: 'Login', link: '/account/login', icon: faSignInAlt, isLogged: false
+    },
+    {
+      label: 'Register', link: '/account/register', icon: faUserPlus, isLogged: false
+    },
+    {
+      label: 'My Account', icon: faUser, isLogged: true, dropdownItems: [
+        { label: 'Dashboard', link: '/account' },
+        { label: 'Update Profile', link: '/account/update-profile' },
+        { label: 'Change Password', link: '/account/change-password' }
+      ]
+    },
     { label: 'Logout', link: '/account/logout', icon: faSignOutAlt, isLogged: true },
-    // Add additional right items or dropdowns as needed
   ],
 };
 
 const MyNavbar = () => {
   // Filter the right items based on the user's login status
   const filteredRightItems = navbarData.rightItems
-  .filter((item) => {
-    if (item.isLogged) {
-      // If the item requires login, check if the user is logged in
-      return isLoggedIn();
-    } else if (item.label === 'Login' || item.label === 'Register') {
-      // Exclude both "Login" and "Register" if the user is not logged in
-      return !isLoggedIn();
-    }
-    // Include other items without checking authentication
-    return true;
-  });
+    .filter((item) => {
+      if (item.isLogged) {
+        // If the item requires login, check if the user is logged in
+        return isLoggedIn();
+      } else if (item.label === 'Login' || item.label === 'Register') {
+        // Exclude both "Login" and "Register" if the user is not logged in
+        return !isLoggedIn();
+      }
+      // Include other items without checking authentication
+      return true;
+    });
 
   return (
     <Navbar bg="primary" expand="lg" variant="dark">
