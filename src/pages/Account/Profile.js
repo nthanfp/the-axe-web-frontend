@@ -7,7 +7,6 @@ import { Layout } from '../../components';
 import { getToken } from '../../utils/Common';
 
 const ProfilePage = () => {
-
   const [user, setUser] = useState({});
   const [apiKey, setApiKey] = useState('');
   const [isApiKeyExist, setIsApiKeyExist] = useState(false);
@@ -29,18 +28,26 @@ const ProfilePage = () => {
     };
 
     fetchUserProfile();
-  }, []);
+  }, [apiKey]);
 
   const handleApiKeyUpdate = async () => {
-    // Add logic to update API key on the server
-    // You can use axios.put or another appropriate method
-    // For example:
-    // const response = await axios.put(`${process.env.REACT_APP_API_URL}/account/update-api-key`, { apiKey }, {
-    //   headers: {
-    //     Authorization: getToken(),
-    //   },
-    // });
-    // Handle response accordingly
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/account/update-api-key`,
+        {}, // Empty data as it's a POST request
+        {
+          headers: {
+            Authorization: getToken(),
+          },
+        }
+      );
+      console.log(response.data);
+      setApiKey(response.data.data.api_key || 'No API Key Provided');
+      setIsApiKeyExist(response.data.data.api_key === null ? false : true);
+    } catch (error) {
+      console.error('Error updating API key:', error);
+      // Handle error, maybe show a message to the user
+    }
   };
 
   return (
@@ -96,7 +103,7 @@ const ProfilePage = () => {
                 </div>
                 <button
                   className="btn btn-primary"
-                  onClick={isApiKeyExist ? handleApiKeyUpdate : null}
+                  onClick={handleApiKeyUpdate}
                   disabled={!isApiKeyExist} // Disable the button if apiKey does not exist
                 >
                   {isApiKeyExist ? 'Update API Key' : 'Create API Key'}

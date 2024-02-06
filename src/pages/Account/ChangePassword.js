@@ -34,7 +34,7 @@ const ChangePassword = () => {
 
       try {
         const response = await axios.post(
-          'https://be.brainys.oasys.id/api/account/change-password',
+          `${process.env.REACT_APP_API_URL}/account/change-password`,
           values,
           {
             headers: {
