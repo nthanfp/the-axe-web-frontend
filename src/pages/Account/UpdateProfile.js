@@ -6,7 +6,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faKey, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 
-import { Layout } from '../../components';
+import { Layout, SelectBar } from '../../components';
 import { getToken } from '../../utils/Common';
 
 const UpdateProfile = () => {
@@ -100,6 +100,9 @@ const UpdateProfile = () => {
     <Layout>
       <div className="container mt-5">
         <div className="row">
+          <div className='col-md-12 mb-3'>
+            <SelectBar />
+          </div>
           {/* Update Profile Card */}
           <div className="col-md-6 mb-3">
             <div className="card border-primary">

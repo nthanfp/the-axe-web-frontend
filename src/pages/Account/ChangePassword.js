@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faKey } from '@fortawesome/free-solid-svg-icons';
-import { Layout } from '../../components';
+
+import { Layout, SelectBar } from '../../components';
 import { getToken } from '../../utils/Common';
-import axios from 'axios';
 
 const ChangePassword = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -61,6 +62,9 @@ const ChangePassword = () => {
     <Layout>
       <div className="container mt-5">
         <div className="row">
+        <div className='col-md-12 mb-3'>
+            <SelectBar />
+          </div>
           <div className="col-md-6 mb-3">
             <div className="card border-primary">
               <div className="card-header bg-primary text-white">

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { Layout } from '../../components';
+import { Layout, SelectBar } from '../../components';
 import { getToken } from '../../utils/Common';
 
 const ProfilePage = () => {
@@ -54,6 +54,9 @@ const ProfilePage = () => {
     <Layout>
       <div className="container mt-5">
         <div className="row">
+          <div className='col-md-12 mb-3'>
+            <SelectBar />
+          </div>
           <div className="col-md-6 mb-3">
             <div className="card border-primary">
               <div className="card-header bg-primary text-white">
