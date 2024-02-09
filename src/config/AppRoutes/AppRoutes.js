@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
 import { isLoggedIn } from '../../utils/Common';
-import { ChangePassword, Home, LoginPage, LogoutPage, ProfilePage, RegisterPage, UpdateProfile } from '../../pages';
+import { ChangePassword, Error404, Home, LoginPage, LogoutPage, ProfilePage, RegisterPage, UpdateProfile } from '../../pages';
 
 const AppRoutes = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(isLoggedIn());
@@ -25,7 +25,7 @@ const AppRoutes = () => {
         <Route exact path="/" element={<Home />} />
         <Route path='/account/login' element={<LoginPage />} />
         <Route path='/account/register' element={<RegisterPage />} />
-        <Route />
+        <Route path='*' element={<Error404 />} />
       </Routes>
     </Router>
   );
