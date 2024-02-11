@@ -11,7 +11,8 @@ const AppRoutes = () => {
       <Routes>
         {/* Admin routes */}
         <Route exact element={<PrivateRoute />}>
-          <Route path='/admin/manage-user' element={<StarterPage1 />} />
+          <Route path='/admin/dashboard' element={<StarterPage1 />} />
+          <Route path='/admin/manage-users' element={<StarterPage1 />} />
         </Route>
 
         {/* Private routes */}

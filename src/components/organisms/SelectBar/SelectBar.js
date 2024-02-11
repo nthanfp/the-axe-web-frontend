@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { isLoggedInAsAdmin } from '../../../utils/Common';
 
 const SelectBar = () => {
   const [value, setValue] = useState('');
@@ -27,6 +28,14 @@ const SelectBar = () => {
           <option value="/account/change-password">Change Password</option>
           <option value="/account/logout">Logout</option>
         </optgroup>
+        
+        {/* Admin menu */}
+        {isLoggedInAsAdmin() && (
+          <optgroup label="Admin">
+            <option value="/admin/dashboard">Admin Dashboard</option>
+            <option value="/admin/manage-users">Manage Users</option>
+          </optgroup>
+        )}
       </select>
     </div>
   );
