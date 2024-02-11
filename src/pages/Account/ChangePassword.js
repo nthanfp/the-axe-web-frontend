@@ -34,7 +34,7 @@ const ChangePassword = () => {
       setAlertType(null);
 
       try {
-        const response = await axios.post(
+        await axios.post(
           `${process.env.REACT_APP_API_URL}/account/change-password`,
           values,
           {

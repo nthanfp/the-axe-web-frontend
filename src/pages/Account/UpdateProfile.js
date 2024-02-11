@@ -4,14 +4,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle, faKey, faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 
 import { Layout, SelectBar } from '../../components';
 import { getToken } from '../../utils/Common';
 
 const UpdateProfile = () => {
   // State variables
-  const [user, setUser] = useState({});
   const [alertMessage, setAlertMessage] = useState(null);
   const [alertType, setAlertType] = useState(null);
   const [isLoading, setIsLoading] = useState(false); // State to manage loading state
@@ -44,7 +43,7 @@ const UpdateProfile = () => {
 
         setIsLoading(true); // Set loading state to true during submission
 
-        const response = await axios.post(
+        await axios.post(
           `${process.env.REACT_APP_API_URL}/account/profile`,
           values,
           {
@@ -86,7 +85,6 @@ const UpdateProfile = () => {
           phone: response.data.data.phone,
         });
 
-        setUser(response.data.data);
       } catch (error) {
         console.error('Error fetching user profile:', error);
       }
