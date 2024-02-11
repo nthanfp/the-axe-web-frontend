@@ -9,15 +9,25 @@ const AppRoutes = () => {
   return (
     <Router>
       <Routes>
+        {/* Admin routes */}
+        <Route exact element={<PrivateRoute />}>
+          <Route path='/admin/manage-user' element={<ProfilePage />} />
+        </Route>
+
+        {/* Private routes */}
         <Route exact element={<PrivateRoute />}>
           <Route path="/account" element={<ProfilePage />} />
           <Route path='/account/logout' element={<LogoutPage />} />
           <Route path='/account/change-password' element={<ChangePassword />} />
           <Route path="/account/update-profile" element={<UpdateProfile />} />
         </Route>
+
+        {/* Public routes */}
         <Route exact path="/" element={<Home />} />
         <Route path='/account/login' element={<LoginPage />} />
         <Route path='/account/register' element={<RegisterPage />} />
+
+        {/* Error routes */}
         <Route path='*' element={<Error404 />} />
       </Routes>
     </Router>
