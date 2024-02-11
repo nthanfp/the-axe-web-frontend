@@ -3,16 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
-import { isLoggedIn } from '../../utils/Common';
 import { ChangePassword, Error404, Home, LoginPage, LogoutPage, ProfilePage, RegisterPage, UpdateProfile } from '../../pages';
 
 const AppRoutes = () => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(isLoggedIn());
-
-  useEffect(() => {
-    setIsUserLoggedIn(isLoggedIn());
-  }, []);
-
   return (
     <Router>
       <Routes>

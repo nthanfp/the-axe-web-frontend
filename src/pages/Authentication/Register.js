@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faPerson, faPhone, faUserPlus } from '@fortawesome/free-solid-svg-icons';
@@ -18,9 +19,6 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterPage = () => {
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-  const [showErrorAlert, setShowErrorAlert] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
@@ -36,12 +34,9 @@ const RegisterPage = () => {
     onSubmit: async (values) => {
       try {
         setIsSubmitting(true);
-        setErrorMessage('');
-        setShowErrorAlert(false);
-        setShowSuccessAlert(false);
 
         // Make a POST request to the registration endpoint
-        const response = await axios.post('http://localhost:5000/api/auth/register', {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, {
           email: values.email,
           password: values.password,
           first_name: values.firstName,
@@ -52,7 +47,15 @@ const RegisterPage = () => {
         // Check if the registration was successful
         if (response.data.status === 'success') {
           console.log('Registration successful:', response.data);
-          setShowSuccessAlert(true);
+
+          // Display success message using SweetAlert2
+          Swal.fire({
+            icon: 'success',
+            title: 'Registration successful!',
+            text: 'Redirecting to login...',
+            showConfirmButton: false,
+            timer: 3000, // Duration of the alert (in milliseconds)
+          });
 
           // Redirect to login page after 3 seconds
           setTimeout(() => {
@@ -61,18 +64,20 @@ const RegisterPage = () => {
         } else {
           // Registration failed, display error message
           console.error('Registration failed:', response.data.message);
-          setShowErrorAlert(true);
-          setErrorMessage(response.data.message);
+          Swal.fire({
+            icon: 'error',
+            title: 'Registration failed',
+            text: response.data.message,
+          });
         }
       } catch (error) {
         // Handle unexpected errors during registration
         console.error('Registration failed:', error.message);
-        setShowErrorAlert(true);
-        setErrorMessage(
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : 'An unexpected error occurred. Please try again.'
-        );
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration failed',
+          text: error.response && error.response.data.message ? error.response.data.message : 'An unexpected error occurred. Please try again.',
+        });
       } finally {
         // Reset the submission state
         setIsSubmitting(false);
@@ -90,19 +95,6 @@ const RegisterPage = () => {
                 <FontAwesomeIcon icon={faUserPlus} /> Register
               </div>
               <div className="card-body">
-                {/* Display success and error alerts */}
-                {showSuccessAlert && (
-                  <div className="alert alert-success alert-dismissible fade show" role="alert">
-                    Registration successful! Redirecting to home...
-                  </div>
-                )}
-                {showErrorAlert && (
-                  <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                    Registration failed: {errorMessage}
-                  </div>
-                )}
-
-                {/* Registration form */}
                 <form onSubmit={formik.handleSubmit}>
                   {/* Email input */}
                   <div className="mb-3">

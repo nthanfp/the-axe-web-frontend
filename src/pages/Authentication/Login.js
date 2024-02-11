@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
@@ -15,10 +16,6 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginPage = () => {
-  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-  const [showErrorAlert, setShowErrorAlert] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -28,24 +25,34 @@ const LoginPage = () => {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         setSubmitting(true);
-        setErrorMessage('');
-        setShowErrorAlert(false);
-        setShowSuccessAlert(false);
 
-        const response = await axios.post('http://localhost:5000/api/auth/login', {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
           email: values.email,
           password: values.password,
         });
 
         console.log('Login successful:', response.data);
-        setShowSuccessAlert(true);
 
         const { token } = response.data.data;
         setUserSession(token);
+
+        // Tampilkan pesan sukses menggunakan SweetAlert2
+        Swal.fire({
+          icon: 'success',
+          title: 'Login successful!',
+          text: 'Redirecting to home...',
+          showConfirmButton: false,
+          timer: 1500, // Durasi tampilan pesan (dalam milidetik)
+        });
       } catch (error) {
         console.error('Login failed:', error.message);
-        setShowErrorAlert(true);
-        setErrorMessage(error.response && error.response.data.message ? error.response.data.message : 'An unexpected error occurred. Please try again.');
+
+        // Tampilkan pesan error menggunakan SweetAlert2
+        Swal.fire({
+          icon: 'error',
+          title: 'Login failed',
+          text: error.response && error.response.data.message ? error.response.data.message : 'An unexpected error occurred. Please try again.',
+        });
       } finally {
         setSubmitting(false);
       }
@@ -62,18 +69,6 @@ const LoginPage = () => {
                 <FontAwesomeIcon icon={faSignInAlt} /> Login
               </div>
               <div className="card-body">
-                {/* Display success and error alerts */}
-                {showSuccessAlert && (
-                  <div className="alert alert-success alert-dismissible fade show" role="alert">
-                    Login successful! Redirecting to home...
-                  </div>
-                )}
-                {showErrorAlert && (
-                  <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                    Login failed: {errorMessage}
-                  </div>
-                )}
-
                 <form onSubmit={formik.handleSubmit}>
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">

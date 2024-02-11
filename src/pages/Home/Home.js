@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <Layout>
       <div className="siel">
-        <h1 className="lol" data-target-resolver="HAHA">Hello</h1>
+        <h1 className="lol">Hello</h1>
       </div>
     </Layout>
   );
