@@ -12,7 +12,7 @@ const Home = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout title={'Home'}>
       <div className="siel">
         <h1 className="lol">Hello</h1>
       </div>
