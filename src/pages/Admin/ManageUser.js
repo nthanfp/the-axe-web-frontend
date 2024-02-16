@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKey, faUser, faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import Swal from 'sweetalert2';
+import $ from 'jquery';
 
 import { Layout, SelectBar } from '../../components';
 import { getToken } from '../../utils/Common';
@@ -31,6 +32,7 @@ const ManageUser = () => {
 
   useEffect(() => {
     fetchUserList();
+    $('#userTable').DataTable();
   }, []);
 
   const getBadgeColor = (role) => {
@@ -110,7 +112,7 @@ const ManageUser = () => {
                   <FontAwesomeIcon icon={faPlus} className="mr-2" /> Add User
                 </button>
                 <div className="table-responsive">
-                  <table className="table table-bordered table-striped">
+                  <table id='userTable' className="table table-bordered table-striped">
                     <thead>
                       <tr>
                         <th className="text-nowrap text-center d-none">ID</th>

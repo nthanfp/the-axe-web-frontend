@@ -6,6 +6,9 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "bootswatch/dist/pulse/bootstrap.min.css";
 
+/* Datatables */
+/* @import 'datatables.net-dt/css/jquery.dataTables.min.css'; */
+
 /* Pace loading */
 @keyframes FadeAnim {
   0% {
