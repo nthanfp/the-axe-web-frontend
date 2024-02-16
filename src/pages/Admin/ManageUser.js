@@ -1,29 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faKey, faUser, faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
+import Swal from 'sweetalert2';
 
 import { Layout, SelectBar } from '../../components';
 import { getToken } from '../../utils/Common';
-import moment from 'moment';
+import AddUserModal from './AddUserModal';
+import EditUserModal from './EditUserModal';
 
 const ManageUser = () => {
   const [userList, setUserList] = useState([]);
+  const [showAddUserModal, setShowAddUserModal] = useState(false);
+  const [showEditUserModal, setShowEditUserModal] = useState(false);
+  const [userToEdit, setUserToEdit] = useState(null);
+
+  const fetchUserList = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/users`, {
+        headers: {
+          Authorization: getToken(),
+        },
+      });
+      setUserList(response.data.data);
+    } catch (error) {
+      console.error('Error fetching user list:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchUserList = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/users`, {
-          headers: {
-            Authorization: getToken(),
-          },
-        });
-        setUserList(response.data.data);
-      } catch (error) {
-        console.error('Error fetching user list:', error);
-      }
-    };
-
     fetchUserList();
   }, []);
 
@@ -31,8 +37,64 @@ const ManageUser = () => {
     return role === 'ADMIN' ? 'bg-danger' : 'bg-primary';
   };
 
+  const handleEdit = (uuid) => {
+    const user = userList.find(user => user.uuid === uuid);
+    setUserToEdit(user);
+    setShowEditUserModal(true);
+  };
+
+  const handleDelete = (uuid) => {
+    // Tampilkan pesan konfirmasi menggunakan SweetAlert2
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this user!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.delete(`${process.env.REACT_APP_API_URL}/admin/users/${uuid}`, {
+            headers: {
+              Authorization: getToken(),
+            },
+          });
+          // Jika pengguna berhasil dihapus, tampilkan pesan sukses
+          Swal.fire(
+            'Deleted!',
+            'User has been deleted.',
+            'success'
+          );
+          // Refresh daftar pengguna setelah pengguna dihapus
+          fetchUserList();
+        } catch (error) {
+          console.error('Error deleting user:', error);
+          // Jika gagal menghapus pengguna, tampilkan pesan error
+          Swal.fire(
+            'Error!',
+            error.response.data.message || 'Something went wrong. Please try again later.',
+            'error'
+          );
+        }
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // Jika pengguna membatalkan penghapusan, tampilkan pesan dibatalkan
+        Swal.fire(
+          'Cancelled',
+          'User deletion was cancelled.',
+          'info'
+        );
+      }
+    });
+  };
+
+  const handleAddUser = () => {
+    setShowAddUserModal(true);
+  };
+
   return (
-    <Layout>
+    <Layout title={`Manage Users`}>
       <div className="container mt-5">
         <div className="row">
           <div className='col-md-12 mb-3'>
@@ -44,7 +106,9 @@ const ManageUser = () => {
                 <FontAwesomeIcon icon={faUser} className="mr-2" /> Users
               </div>
               <div className="card-body">
-                {/* User table */}
+                <button className="btn btn-sm btn-primary mb-3" onClick={handleAddUser}>
+                  <FontAwesomeIcon icon={faPlus} className="mr-2" /> Add User
+                </button>
                 <div className="table-responsive">
                   <table className="table table-bordered table-striped">
                     <thead>
@@ -55,6 +119,7 @@ const ManageUser = () => {
                         <th className="text-nowrap text-center">Role</th>
                         <th className="text-nowrap text-center">Last Login</th>
                         <th className="text-nowrap text-center">Register At</th>
+                        <th className="text-nowrap text-center">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -67,7 +132,15 @@ const ManageUser = () => {
                             <span className={`badge ${getBadgeColor(user.role)}`}>{user.role}</span>
                           </td>
                           <td className="text-nowrap">{moment(user.last_login).format('DD-MM-YYYY hh:mm:ss')}</td>
-                          <td className="text-nowrap">{moment(user.createdAt ).format('DD-MM-YYYY hh:mm:ss')}</td>
+                          <td className="text-nowrap">{moment(user.createdAt).format('DD-MM-YYYY hh:mm:ss')}</td>
+                          <td className="text-nowrap text-center">
+                            <button className="btn btn-sm btn-primary mx-1" onClick={() => handleEdit(user.uuid)}>
+                              <FontAwesomeIcon icon={faEdit} />
+                            </button>
+                            <button className="btn btn-sm btn-danger mx-1" onClick={() => handleDelete(user.uuid)}>
+                              <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -87,6 +160,18 @@ const ManageUser = () => {
           </div>
         </div>
       </div>
+      <AddUserModal
+        showAddUserModal={showAddUserModal}
+        setShowAddUserModal={setShowAddUserModal}
+        setUserList={setUserList}
+        refreshUserList={fetchUserList}
+      />
+      <EditUserModal
+        showEditUserModal={showEditUserModal}
+        setShowEditUserModal={setShowEditUserModal}
+        userToEdit={userToEdit}
+        refreshUserList={fetchUserList}
+      />
     </Layout>
   );
 };
