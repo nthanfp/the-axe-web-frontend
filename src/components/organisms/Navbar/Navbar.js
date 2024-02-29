@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faSignInAlt, faUserPlus, faSignOutAlt, faUser, faCogs } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSignInAlt, faUserPlus, faSignOutAlt, faUser, faCogs, faCode } from '@fortawesome/free-solid-svg-icons';
 
 import { isLoggedIn } from '../../../utils/Common';
 
@@ -11,6 +11,7 @@ const navbarData = {
   leftItems: [
     { label: 'Home', link: '/', icon: faHome },
     { label: 'Tools', link: '/tools', icon: faCogs },
+    { label: 'Projects', link: '/projects', icon: faCode },
   ],
   rightItems: [
     {

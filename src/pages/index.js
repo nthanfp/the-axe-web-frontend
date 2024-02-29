@@ -9,7 +9,8 @@ import Error404 from "./Errors/Error404.js";
 import StarterPage1 from "./Starter/Starter1.js";
 import ManageUser from "./Admin/Users/ManageUser.js";
 import ManageTool from "./Admin/Tools/ManageTool.js";
+import ManageProject from "./Admin/Projects/ManageProject.js";
 import ListTools from "./Tools/ListTools.js";
 import ListProject from "./Projects/ListProject.js";
 
-export { ListProject, ListTools, ManageUser, ManageTool, Home, LoginPage, RegisterPage, ProfilePage, LogoutPage, ChangePassword, UpdateProfile, Error404, StarterPage1 }; 
+export { ManageProject, ListProject, ListTools, ManageUser, ManageTool, Home, LoginPage, RegisterPage, ProfilePage, LogoutPage, ChangePassword, UpdateProfile, Error404, StarterPage1 }; 
