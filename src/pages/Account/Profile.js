@@ -107,7 +107,7 @@ const ProfilePage = () => {
                 <button
                   className="btn btn-primary"
                   onClick={handleApiKeyUpdate}
-                  disabled={!isApiKeyExist} // Disable the button if apiKey does not exist
+                  // disabled={isApiKeyExist} // Disable the button if apiKey does not exist
                 >
                   {isApiKeyExist ? 'Update API Key' : 'Create API Key'}
                 </button>
