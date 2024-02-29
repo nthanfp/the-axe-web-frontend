@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
-import { Layout } from '../../../components';
+import { Layout, SelectBar } from '../../../components';
 import { getToken } from '../../../utils/Common';
 import AddProjectModal from './AddProjectModal';
 import EditProjectModal from './EditProjectModal';
@@ -86,6 +86,9 @@ const ManageProject = () => {
   return (
     <Layout title={`Manage Projects`}>
       <div className="container mt-5">
+      <div className='col-md-12 mb-3'>
+        <SelectBar />
+      </div>
         <div className="row">
           <div className="col-md-12 mb-3">
             <div className="card border-primary">
