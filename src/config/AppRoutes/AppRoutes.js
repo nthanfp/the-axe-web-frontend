@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
-import { ChangePassword, Error404, Home, ListTools, LoginPage, LogoutPage, ManageTool, ManageUser, ProfilePage, RegisterPage, StarterPage1, UpdateProfile } from '../../pages';
+import { ChangePassword, Error404, Home, ListProject, ListTools, LoginPage, LogoutPage, ManageTool, ManageUser, ProfilePage, RegisterPage, StarterPage1, UpdateProfile } from '../../pages';
 
 const AppRoutes = () => {
   return (
@@ -27,6 +27,7 @@ const AppRoutes = () => {
         {/* Public routes */}
         <Route exact path="/" element={<Home />} />
         <Route exact path="/tools" element={<ListTools />} />
+        <Route exact path="/projects" element={<ListProject />} />
 
         {/* Authentication */}
         <Route path='/account/login' element={<LoginPage />} />

@@ -28,27 +28,47 @@ const ListProject = () => {
   }, []);
 
   return (
-    <Layout title={'List Tools'}>
+    <Layout title={'Our Projects'}>
       <div className="container mt-5">
         <div className="row">
           <div className='col-md-12 mb-3'>
             <SelectBar />
           </div>
-          {tools.map(tool => (
-            <div key={tool.id_tools} className="col-md-6 mb-3">
-              <div className="card border-primary">
-                <div className="card-body">
-                  <h4 className="card-title">{tool.name}</h4>
-                  <p className="card-text">{tool.description}</p>
-                  <a href={`/tools/${tool.slug}`}>
-                    <button className="btn btn-primary">
-                      <FontAwesomeIcon icon={faExternalLinkSquareAlt} /> Visit Tools
-                    </button>
-                  </a>
-                </div>
+          <div class="row">
+            <div class="col-lg-6 mb-3">
+              <div class="card border-primary">
+                <img class="card-img-top" src="https://res.cloudinary.com/ddw14mjcm/image/upload/v1600147890/20200915_123044_isu81p.jpg" alt="Twitter Auto Base"/>
+                  <div class="card-body">
+                    <h4 class="card-title">Twitter Auto Base</h4>
+                    <p class="card-text">Twitter Auto Base it’s a console based script created for bot that works like others auto base account.</p>
+                    <a href="https://github.com/nthanfp/TwitterAutoBase" class="btn btn-primary"><i class="fas fa-external-link-square-alt"></i> Visit Project</a>
+                  </div>
               </div>
             </div>
-          ))}
+            <div class="col-lg-6 mb-3">
+              <div class="card border-primary">
+                <img class="card-img-top" src="https://res.cloudinary.com/ddw14mjcm/image/upload/v1600147889/likegram_fvjomz.png" alt="Like Gram"/>
+                  <div class="card-body">
+                    <h4 class="card-title">Like Gram</h4>
+                    <p class="card-text">Like Gram is an Auto Instagram followers website to increase your Instagram Indonesian Followers and Likes for free.</p>
+                    <a href="https://github.com/nthanfp/TwitterAutoBase" class="btn btn-primary"><i class="fas fa-external-link-square-alt"></i> Visit Project</a>
+                    <a href="<?=$config['host'];?>/page/contact" class="btn btn-success mx-2 float-right"><i class="fa fa-shopping-cart"></i> Buy This</a>
+                  </div>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-3">
+              <div class="card border-primary">
+                <img class="card-img-top" src="https://res.cloudinary.com/ddw14mjcm/image/upload/v1600147890/igprice_aedadv.gif" alt="Insta Price"/>
+                  <div class="card-body">
+                    <h4 class="card-title">Insta Price</h4>
+                    <p class="card-text">Insta Price allows you to calculate your estimated price your Instagram account based on your engagement and number of followers.</p>
+                    <a href="https://igprice.me" class="btn btn-primary"><i class="fas fa-external-link-square-alt"></i> Visit Project</a>
+                    <a href="<?=$config['host'];?>/page/contact" class="btn btn-success mx-2 float-right"><i class="fa fa-shopping-cart"></i> Buy This</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </Layout>

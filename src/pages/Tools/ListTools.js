@@ -28,7 +28,7 @@ const ListTools = () => {
   }, []);
 
   return (
-    <Layout title={'List Tools'}>
+    <Layout title={'Tools'}>
       <div className="container mt-5">
         <div className="row">
           <div className='col-md-12 mb-3'>
