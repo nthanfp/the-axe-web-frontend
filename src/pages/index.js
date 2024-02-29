@@ -8,5 +8,6 @@ import UpdateProfile from "./Account/UpdateProfile.js";
 import Error404 from "./Errors/Error404.js";
 import StarterPage1 from "./Starter/Starter1.js";
 import ManageUser from "./Admin/Users/ManageUser.js";
+import ManageTool from "./Admin/Tools/ManageTool.js";
 
-export { ManageUser, Home, LoginPage, RegisterPage, ProfilePage, LogoutPage, ChangePassword, UpdateProfile, Error404, StarterPage1 }; 
+export { ManageUser, ManageTool, Home, LoginPage, RegisterPage, ProfilePage, LogoutPage, ChangePassword, UpdateProfile, Error404, StarterPage1 }; 

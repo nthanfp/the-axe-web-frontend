@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
-import { ChangePassword, Error404, Home, LoginPage, LogoutPage, ManageUser, ProfilePage, RegisterPage, StarterPage1, UpdateProfile } from '../../pages';
+import { ChangePassword, Error404, Home, LoginPage, LogoutPage, ManageTool, ManageUser, ProfilePage, RegisterPage, StarterPage1, UpdateProfile } from '../../pages';
 
 const AppRoutes = () => {
   return (
@@ -13,6 +13,7 @@ const AppRoutes = () => {
         <Route exact element={<PrivateRoute />}>
           <Route path='/admin/dashboard' element={<StarterPage1 />} />
           <Route path='/admin/manage-users' element={<ManageUser />} />
+          <Route path='/admin/manage-tools' element={<ManageTool />} />
         </Route>
 
         {/* Private routes */}
