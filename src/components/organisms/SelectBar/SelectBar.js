@@ -34,6 +34,7 @@ const SelectBar = () => {
           <optgroup label="Admin">
             <option value="/admin/dashboard">Admin Dashboard</option>
             <option value="/admin/manage-users">Manage Users</option>
+            <option value="/admin/manage-tools">Manage Tools</option>
           </optgroup>
         )}
       </select>
