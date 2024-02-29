@@ -12,5 +12,6 @@ import ManageTool from "./Admin/Tools/ManageTool.js";
 import ManageProject from "./Admin/Projects/ManageProject.js";
 import ListTools from "./Tools/ListTools.js";
 import ListProject from "./Projects/ListProject.js";
+import DashboardAdmin from "./Admin/DashboardAdmin.js";
 
-export { ManageProject, ListProject, ListTools, ManageUser, ManageTool, Home, LoginPage, RegisterPage, ProfilePage, LogoutPage, ChangePassword, UpdateProfile, Error404, StarterPage1 }; 
+export { DashboardAdmin, ManageProject, ListProject, ListTools, ManageUser, ManageTool, Home, LoginPage, RegisterPage, ProfilePage, LogoutPage, ChangePassword, UpdateProfile, Error404, StarterPage1 }; 
