@@ -6,8 +6,8 @@ import moment from 'moment';
 import Swal from 'sweetalert2';
 import $ from 'jquery';
 
-import { Layout, SelectBar } from '../../components';
-import { getToken } from '../../utils/Common';
+import { Layout, SelectBar } from '../../../components';
+import { getToken } from '../../../utils/Common';
 import AddUserModal from './AddUserModal';
 import EditUserModal from './EditUserModal';
 
