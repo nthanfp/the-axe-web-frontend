@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelopeCircleCheck, faEnvelopeOpenText, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faEnvelopeCircleCheck, faEnvelopeOpenText, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { Layout, SelectBar } from '../../components';
 
