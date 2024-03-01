@@ -78,6 +78,7 @@ const ChangePassword = () => {
                       type="password"
                       id="current_password"
                       name="current_password"
+                      placeholder="Current Password"
                       className={`form-control ${formik.touched.current_password && formik.errors.current_password ? 'is-invalid' : ''}`}
                       {...formik.getFieldProps('current_password')}
                       disabled={submitting}
@@ -92,6 +93,7 @@ const ChangePassword = () => {
                       type="password"
                       id="new_password"
                       name="new_password"
+                      placeholder="New Password"
                       className={`form-control ${formik.touched.new_password && formik.errors.new_password ? 'is-invalid' : ''}`}
                       {...formik.getFieldProps('new_password')}
                       disabled={submitting}
@@ -106,6 +108,7 @@ const ChangePassword = () => {
                       type="password"
                       id="confirm_password"
                       name="confirm_password"
+                      placeholder="Confirm New Password"
                       className={`form-control ${formik.touched.confirm_password && formik.errors.confirm_password ? 'is-invalid' : ''}`}
                       {...formik.getFieldProps('confirm_password')}
                       disabled={submitting}
