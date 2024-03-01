@@ -13,5 +13,8 @@ import ManageProject from "./Admin/Projects/ManageProject.js";
 import ListTools from "./Tools/ListTools.js";
 import ListProject from "./Projects/ListProject.js";
 import DashboardAdmin from "./Admin/DashboardAdmin.js";
+import Terms from "./Page/Terms.js";
+import Privacy from "./Page/Privacy.js";
+import Contact from "./Page/Contact.js";
 
-export { DashboardAdmin, ManageProject, ListProject, ListTools, ManageUser, ManageTool, Home, LoginPage, RegisterPage, ProfilePage, LogoutPage, ChangePassword, UpdateProfile, Error404, StarterPage1 }; 
+export { Contact, Privacy, Terms, DashboardAdmin, ManageProject, ListProject, ListTools, ManageUser, ManageTool, Home, LoginPage, RegisterPage, ProfilePage, LogoutPage, ChangePassword, UpdateProfile, Error404, StarterPage1 }; 

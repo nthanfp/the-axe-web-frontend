@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
-import { ChangePassword, DashboardAdmin, Error404, Home, ListProject, ListTools, LoginPage, LogoutPage, ManageProject, ManageTool, ManageUser, ProfilePage, RegisterPage, StarterPage1, UpdateProfile } from '../../pages';
+import { ChangePassword, Contact, DashboardAdmin, Error404, Home, ListProject, ListTools, LoginPage, LogoutPage, ManageProject, ManageTool, ManageUser, Privacy, ProfilePage, RegisterPage, Terms, UpdateProfile } from '../../pages';
 
 const AppRoutes = () => {
   return (
@@ -26,9 +26,12 @@ const AppRoutes = () => {
         </Route>
 
         {/* Public routes */}
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/tools" element={<ListTools />} />
-        <Route exact path="/projects" element={<ListProject />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/tools" element={<ListTools />} />
+        <Route path="/projects" element={<ListProject />} />
+        <Route path="/page/terms" element={<Terms />} />
+        <Route path="/page/contact" element={<Contact />} />
+        <Route path="/page/privacy" element={<Privacy />} />
 
         {/* Authentication */}
         <Route path='/account/login' element={<LoginPage />} />
