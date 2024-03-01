@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faSignInAlt, faUserPlus, faSignOutAlt, faUser, faCogs, faCode } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSignInAlt, faUserPlus, faSignOutAlt, faUser, faCogs, faCode, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { isLoggedIn } from '../../../utils/Common';
 
@@ -15,6 +15,13 @@ const navbarData = {
   ],
   rightItems: [
     {
+      label: 'Pages', icon: faFileAlt, dropdownItems: [
+        { label: 'Terms of Services', link: '/page/terms' },
+        { label: 'Privacy Policy', link: '/page/privacy' },
+        { label: 'Contact Us', link: '/page/contact' },
+      ]
+    },
+    {
       label: 'Login', link: '/account/login', icon: faSignInAlt, isLogged: false
     },
     {
@@ -24,10 +31,10 @@ const navbarData = {
       label: 'My Account', icon: faUser, isLogged: true, dropdownItems: [
         { label: 'Dashboard', link: '/account' },
         { label: 'Update Profile', link: '/account/update-profile' },
-        { label: 'Change Password', link: '/account/change-password' }
+        { label: 'Change Password', link: '/account/change-password' },
+        { label: 'Logout', link: '/account/logout' }
       ]
     },
-    { label: 'Logout', link: '/account/logout', icon: faSignOutAlt, isLogged: true },
   ],
 };
 
